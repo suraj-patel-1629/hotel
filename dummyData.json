@@ -1,0 +1,15 @@
+{
+
+    "name": " HOTEL RANJEET Near Bhopal Junction Station, Bhopal  410 m from Bhopal Bus StandT",
+    "imageUrls": [
+
+    ],
+    "rentPerDays": 3000,
+    "type": "Delux",
+    "maxCount": 3,
+    "phoneNumber": {
+      "$numberLong": "9989649278"
+    },
+    "currentBookings": [],
+    "description": "his pocket-friendly hotel in Bhopal provides a restaurant, gym, conference room, rooftop, lift & Wi-Fi."
+  }

@@ -25,7 +25,6 @@ router.get("/getallRooms",async(req,res)=>{
 
 router.post("/getroombyid",async(req,res)=>{
      const roomid = req.body.roomid;
-     console.log("get by rooms  id hit");
 
     try{
     const rooms= await Rooms.findById({_id:roomid});

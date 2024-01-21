@@ -19,9 +19,10 @@ app.use(express.json());
 
 const roomsRoute = require("./routes/roomsRoutes");
 const usersRoute = require("./routes/userRoute");
+const bookingsRoute = require("./routes/bookingsRoute");
 app.use(`/api/rooms`,roomsRoute);
  app.use(`/api/user`,usersRoute);
- app.use('/api/booking',bookingsRoute)
+ app.use('/api/bookings',bookingsRoute)
 app.listen(PORT,()=>{
     console.log(`server started at port no ${PORT}`);
 })

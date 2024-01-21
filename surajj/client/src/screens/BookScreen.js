@@ -13,18 +13,18 @@ function BookScreen() {
   const[room,setroom]=useState();
   
   // const room = params.roomid;
-   const startdate=params.fromdates;
+   const fromdate=params.fromdates;
    
-   const enddate=params.todates;
+   const todate=params.todates;
 
-   const d1= moment(startdate,'DD-MM-YYYY');
+   const d1= moment(fromdate,'DD-MM-YYYY');
    
    
-   const d2= moment(enddate,'DD-MM-YYYY');
+   const d2= moment(todate,'DD-MM-YYYY');
    const totaldays= d2.diff(d1,'days')+1;
    
- // const [totalamount,settotalamount]= useState();
-
+  const [totalamount,settotalamount]= useState();
+  
    
   useEffect(() => {
     (async () => {
@@ -32,9 +32,11 @@ function BookScreen() {
         setloading(true);
         const data = (await axios.post(`http://localhost:5000/api/rooms/getroombyid`,{roomid : params.roomid})).data
         setroom(data)
+        settotalamount(data.rentPerDays*totaldays)
         setloading(false);
         
       }
+      
       
       
       catch (err) {
@@ -48,17 +50,22 @@ function BookScreen() {
    async function bookRoom(){
          const bookingDetails= {
           room,
-          userid:JSON.parse(localStorage.getItem('currentUseer'))._id,
+          userid:JSON.parse(localStorage.getItem('currentUser'))._id,
           totaldays,
+          fromdate,
+          todate,
           
+
 
           
 
 
          }
+         
+       
          try{
-          const result=await axios.post('/api/bookings/bookroom',bookingDetails)
-
+          const result=await axios.post('http://localhost:5000/api/bookings/bookroom',bookingDetails)
+         console.log(result);
          }catch(error){
 
          }
@@ -84,8 +91,8 @@ function BookScreen() {
              <b>Booking Details</b>
               <hr />
               <b> <p>Name : </p>
-              <p>From Date :{startdate}</p>
-              <p>To Date :{enddate}</p>
+              <p>From Date :{fromdate}</p>
+              <p>To Date :{todate}</p>
               <p>Max Count : {room.maxCount}</p>
             </b>
              </div>
@@ -94,7 +101,7 @@ function BookScreen() {
               <hr></hr>
               <b> <p>Total Days :{totaldays}</p>
                   <p>Rent Per Day : {room.rentPerDays}</p>
-                  <p>Total Amounts :</p>
+                  <p>Total Amounts :{totalamount}</p>
                 
               </b>
              </div>

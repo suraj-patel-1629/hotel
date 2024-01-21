@@ -27,7 +27,7 @@ const bookingSchema= mongoose.Schema({
     },
     totalamount:{
         type:Number,
-        required:true
+        required:false
     },
     transactionid:{
         type:String,
@@ -35,10 +35,10 @@ const bookingSchema= mongoose.Schema({
     },
     status:{
         type:String,
-        required:true,
+        required:false,
         deafult:'booked'
     }
 },{
     timestamp:true,
 })
-module.export= mongoose.model("bookings",bookingSchema);
+module.exports= mongoose.model("booking",bookingSchema);
